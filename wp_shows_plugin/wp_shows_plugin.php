@@ -25,14 +25,23 @@ $wpsp_path_lang = dirname( plugin_basename( __FILE__ ) ) ."/";
 // include the database activation and deactivation steps
 include "database/activate_db_1.0.0.php";
 include "database/deactivate_db_1.0.0.php";
+include "admin/wpsp_administration.php";
 
 function sendeplan_activation() {
 	plugin_activate_db_1_0_0(); // to find under plugin database activation scripts
 }
 
-
 function sendeplan_deactivation() {
 	plugin_deactivate_db_1_0_0(); // to find under plugin database deactivation scripts
 }
+
+// include the init scripts
+add_action('init', 'load_frontend_script');
+add_action('init', 'create_sendungs_posttype');
+
+// add actions for showing the admin menu
+add_action('admin_menu', 'wpsp_createShowAdminMenu');
+add_action('admin_init', 'wpsp_loadBackendScript');
+add_action('admin_init', 'wpsp_loadMetaBox', 1 );
 
 ?>
