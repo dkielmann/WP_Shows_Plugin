@@ -6,7 +6,7 @@
  */
 
 // when showing Backend, load the required javascripts and css styles
-function wpsp_loadBackendScript() {
+function wp_shows_load_backendscript() {
 	global $wpsp_path;
     $wpsp_path_backend_script = $wpsp_path."assets/js/backend.js";
     $wpsp_path_backend_css = $wpsp_path."assets/css/backend.css";
