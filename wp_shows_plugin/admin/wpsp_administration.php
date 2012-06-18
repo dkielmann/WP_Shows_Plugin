@@ -13,6 +13,7 @@ function wpsp_loadBackendScript() {
     wp_enqueue_script('wpsp_path_backend_script', $wpsp_path_backend_script);
     wp_enqueue_style('wpsp_path_backend_style', $wpsp_path_backend_css);
     wp_enqueue_script('jquery');
+	
 }
 
 ?>
