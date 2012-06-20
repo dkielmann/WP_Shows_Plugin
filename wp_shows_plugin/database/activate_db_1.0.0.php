@@ -5,6 +5,7 @@
  * @version 0.1.0
  */
 function plugin_activate_db_1_0_0() {
+
     global $wpdb;
 	
 	// create table for show categories and
@@ -39,8 +40,7 @@ function plugin_activate_db_1_0_0() {
 	$genre1 = new wpsp_Genre('Pop', 'Pop', 'd000ff');
 	$genre1 = new wpsp_Genre('Rock', 'Rock', 'fc5858');
 	$genre1 = new wpsp_Genre('Metal', 'Metal', '8e4d36');
-	
-	
+
 }
 
 ?>

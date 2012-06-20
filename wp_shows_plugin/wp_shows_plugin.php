@@ -29,6 +29,7 @@ load_plugin_textdomain( 'wpsp', false, $wpsp_path);
 include "database/activate_db_1.0.0.php";
 include "database/deactivate_db_1.0.0.php";
 include "admin/wpsp_administration.php";
+include "frontend/wpsp_frontend.php";
 require "dao/wpsp_Genre.php";
 require "dao/wpsp_Scheduling.php";
 
@@ -61,10 +62,11 @@ function wpsp_shows_create_show_posttype() {
 
 // include the init scripts
 add_action('init', 'wpsp_shows_load_frontendscript');
-add_action('init', 'wp_shows_create_show_posttype');
+add_action('init', 'wpsp_shows_create_show_posttype');
 
 // add actions for showing the admin menu
 add_action('admin_menu', 'wpsp_shows_create_show_adminmenu');
+add_action('admin_menu', 'wpsp_shows_administration_menu');
 add_action('admin_init', 'wpsp_shows_load_backendscript');
 add_action('admin_init', 'wpsp_shows_add_metaboxes');
 
@@ -74,5 +76,22 @@ add_filter('manage_posts_custom_column', 				'wpsp_shows_posts_custom_column'); 
 add_filter('manage_edit-wpsp_shows_sortable_columns', 	'wpsp_shows_sortable_columns');					// making the columns sortable
 // add_filter('request', 'wpsp_shows_add_to_feed');														// add the shows to the blog feed
 
+// functions for administrating Genres
+add_action('admin_head', 'wpsp_genre_ajax_javascript');
+add_action('wp_ajax_add_genre', 'wpsp_genre_ajax_add');
+add_action('wp_ajax_del_genre', 'wpsp_genre_ajax_del');
+add_action('wp_ajax_save_genre', 'wpsp_genre_ajax_save');
+add_action('wp_ajax_get_genre', 'wpsp_genre_ajax_get');
+
+// embed the javascript file that makes the AJAX request
+wp_enqueue_script( 'wpsp_ajax_request_schedules', $wpsp_path."assets/js/schedules_ajax.js", array( 'jquery' ) );
+wp_enqueue_script( 'wpsp_ajax_request_genres', $wpsp_path."assets/js/genres_ajax.js", array( 'jquery' ) );
+wp_localize_script( 'wpsp_ajax_request', 'wpsp_ajax', array(
+    // URL to wp-admin/admin-ajax.php to process the request
+    'ajaxurl'		=> admin_url( 'admin-ajax.php' ),
+     )
+);
+
+add_action('admin_init', 'wpsp_shows_create_nonces');
 
 ?>
