@@ -23,7 +23,7 @@ class wpsp_Scheduling
 		if ($numargs == 1) {
 			$this->set_from_DB($attr[0]);
 		} else if ($numargs == 8) {
-			$this->showID = attr[0];
+			$this->showID = $attr[0];
 			$this->ts_start = $attr[1];
 			$this->ts_duration = $attr[2];
 			$this->repeatit = $attr[3];
@@ -47,7 +47,7 @@ class wpsp_Scheduling
 					   "`repeatintervall`, ".
 					   "`repeattimes` ".
 					   "`repeatuntil` ".
-					   "FROM `{$wpdb->prefix}".wpsp_Scheduling::$table_name."` WHERE id = '$sched_id'"
+					   "FROM `{$wpdb->prefix}".wpsp_Scheduling::$table_name."` WHERE id = '$sched_id'";
 					   
 		$resultArray = $wpdb->get_results($sqlSelect, ARRAY_A);
 		if (count($resultArray) > 0) {
@@ -60,6 +60,7 @@ class wpsp_Scheduling
 			$this->repeatcount = $result['repeatcount'];
 			$this->repeatintervall = $result['repeatintervall'];
 			$this->repeattimes = $result['repeattimes'];
+			$this->repeatuntil = $result['repeatuntil'];
 			return true;
 		} else {
 			return false;

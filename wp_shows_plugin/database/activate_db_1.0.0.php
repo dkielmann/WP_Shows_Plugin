@@ -8,7 +8,6 @@ function plugin_activate_db_1_0_0() {
     global $wpdb;
 	
 	// create table for show categories and
-	// add some standard options for categories and others
 	$install_wpsp_categories_sql =  "CREATE TABLE `{$wpdb->prefix}".wpsp_Genre::$table_name."` (";
 	$install_wpsp_categories_sql .= "  `id` INT(20) NOT NULL AUTO_INCREMENT,";
 	$install_wpsp_categories_sql .= "  `title` varchar(255),";
@@ -17,6 +16,21 @@ function plugin_activate_db_1_0_0() {
 	$install_wpsp_categories_sql .= "  PRIMARY KEY (`id`)) ENGINE = MyISAM;";
 	$wpdb->query($install_wpsp_categories_sql);
 	
+	// create table for show sheduling
+	$install_wpsp_scheduling_sql =  "CREATE TABLE `{$wpdb->prefix}".wpsp_Scheduling::$table_name."` (";
+	$install_wpsp_scheduling_sql .= "  `id` INT(20) NOT NULL AUTO_INCREMENT,";
+	$install_wpsp_scheduling_sql .= "  `showID` INT(20),";
+	$install_wpsp_scheduling_sql .= "  `ts_start` DATETIME,";
+	$install_wpsp_scheduling_sql .= "  `ts_duration` INT(20),";
+	$install_wpsp_scheduling_sql .= "  `repeatit` BOOLEAN,";
+	$install_wpsp_scheduling_sql .= "  `repeatcount` INT(2),";
+	$install_wpsp_scheduling_sql .= "  `repeatintervall` VARCHAR(2),";
+	$install_wpsp_scheduling_sql .= "  `repeattimes` VARCHAR(2000),";
+	$install_wpsp_scheduling_sql .= "  `repeatuntil` DATETIME,";
+	$install_wpsp_scheduling_sql .= "  PRIMARY KEY (`id`)) ENGINE = MyISAM;";
+	$wpdb->query($install_wpsp_scheduling_sql);
+	
+	// add some standard options for categories and others
 	$genre1 = new wpsp_Genre('Black Music', 'Black Music', '000000');
 	$genre1 = new wpsp_Genre('Schlager', 'Schlager', 'fff600');
 	$genre1 = new wpsp_Genre('Klassik', 'Klassik', 'ffbf00');
@@ -26,19 +40,6 @@ function plugin_activate_db_1_0_0() {
 	$genre1 = new wpsp_Genre('Rock', 'Rock', 'fc5858');
 	$genre1 = new wpsp_Genre('Metal', 'Metal', '8e4d36');
 	
-	// create table for show sheduling
-	$install_wpsp_scheduling_sql =  "CREATE TABLE `{$wpdb->prefix}".wpsp_Scheduling::$table_name."` (";
-	$install_wpsp_scheduling_sql .= "  `id` INT(20) NOT NULL AUTO_INCREMENT,";
-	$install_wpsp_scheduling_sql .= "  `showID` INT(20),";
-	$install_wpsp_scheduling_sql .= "  `ts_start` datetime,";
-	$install_wpsp_scheduling_sql .= "  `ts_duration` INT[20],";
-	$install_wpsp_scheduling_sql .= "  `repeatit` BOOL,";
-	$install_wpsp_scheduling_sql .= "  `repeatcount` INT[2],";
-	$install_wpsp_scheduling_sql .= "  `repeatintervall` VARCHAR(2),";
-	$install_wpsp_scheduling_sql .= "  `repeattimes` VARCHAR(2000),";
-	$install_wpsp_scheduling_sql .= "  `repeatuntil` datetime,";
-	$install_wpsp_scheduling_sql .= "  PRIMARY KEY (`id`)) ENGINE = MyISAM;";
-	$wpdb->query($install_wpsp_scheduling_sql);
 	
 }
 
