@@ -6,7 +6,7 @@
  */
 
 // when showing Frontend, load the required javascripts and css styles
-function wp_shows_load_frontendscript() {
+function wpsp_shows_load_frontendscript() {
     if(!is_admin()){
         global $wpsp_path;
         $wpsp_path_frontend_script = $wpsp_path."frontend.js";
