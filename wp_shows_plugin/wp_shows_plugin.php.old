@@ -86,6 +86,7 @@ add_action('wp_ajax_get_genre', 'wpsp_genre_ajax_get');
 // embed the javascript file that makes the AJAX request
 wp_enqueue_script( 'wpsp_ajax_request_schedules', $wpsp_path."assets/js/schedules_ajax.js", array( 'jquery' ) );
 wp_enqueue_script( 'wpsp_ajax_request_genres', $wpsp_path."assets/js/genres_ajax.js", array( 'jquery' ) );
+
 wp_localize_script( 'wpsp_ajax_request', 'wpsp_ajax', array(
     // URL to wp-admin/admin-ajax.php to process the request
     'ajaxurl'		=> admin_url( 'admin-ajax.php' ),

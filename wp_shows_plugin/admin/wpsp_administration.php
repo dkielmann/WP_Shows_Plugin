@@ -36,7 +36,8 @@ function wpsp_shows_metabox_genre( $post ) {
 		echo "</label></div>\n";
 	}
 	
-	echo "<div>Hier Formular für 'Genre hinzufügen'</div>\n";
+	echo "<div><form>\n";
+	echo "</form></div>\n";
 }
 
 function wpsp_shows_posts_columns($columns) {
